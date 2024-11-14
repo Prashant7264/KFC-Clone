@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'main' %}
+<!--main section-->
+<div class="container" style="padding: 20px; background-color: #f0f4f8; border-radius: 5px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+    {% if success %}
+            <div class="alert alert-success mt-3">
+                {{success}}
+            </div>
+            {% endif %}
+
+            {% if errmsg %}
+            <div class="alert alert-danger mt-3">
+                {{errmsg}}
+            </div>
+            {% endif %}
+    {% for x in products %}
+    <div class="container">
+        <!-- Cart Title -->
+        <h2 style="font-size: 24px; font-weight: bold; color: #333; margin-bottom: 20px; text-align: center;">Your Cart</h2>
+        
+        <!-- Headers for Item, Price, and Actions -->
+        <div style="display: flex; justify-content: space-between; padding: 10px 0; font-weight: bold; color: #555; border-bottom: 2px solid #ddd;">
+            <div style="flex: 3;">Item Name</div>
+            <div style="flex: 1; text-align: center;">Price</div>
+            <div style="flex: 1; text-align: right;">Actions</div>
+        </div>
+    
+        <!-- Item Row -->
+        <div class="item-row" style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 15px; border: 1px solid #ddd; padding: 10px; border-radius: 5px;">
+            <div class="item-name" style="display: flex; align-items: center; flex: 3;">
+                <img src="{{ x.pimage.url }}" alt="{{ x.name }}" style="width: 350px; height: auto; margin-right: 10px; border-radius: 5px;">
+                <span style="font-size: 18px; font-weight: 600; color: #333;">{{ x.name }}</span>
+            </div>
+            
+            <div class="item-price" style="flex: 1; text-align: center; font-size: 18px; font-weight: bold; color: #333;">
+                ₹ {{ x.price }}
+            </div>
+        
+            <div class="item-actions" style="flex: 1; text-align: right; display: flex; gap: 10px;">
+                <a href="/addtocart/{{ x.id }}" class="btn btn-primary btn-sm" style="padding: 10px 20px; border-radius: 5px;">Add to Cart</a>
+                <a href="/viewcart" class="btn btn-info btn-sm" style="padding: 10px 20px; border-radius: 5px;">View Cart</a>
+                <a href="/deal" class="btn btn-warning btn-sm" style="padding: 10px 20px; border-radius: 5px;">Add More Items</a>
+            </div>
+        </div>
+    </div>
+    
+    
+    {% endfor %}
+</div>
+<br>
+{% endblock 'main' %}

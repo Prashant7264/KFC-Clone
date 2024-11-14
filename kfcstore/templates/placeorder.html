@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'main' %}
+<!--Cart section-->
+<div class="container" style="padding: 20px; background-color: #f0f4f8; border-radius: 5px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+    <div class="cart-container">
+        
+        
+        <!-- Customer Details Section -->
+        <div class="customer-details" style="margin-bottom: 20px; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
+            <h4 style="font-weight: bold; color: #333; text-align: center;">Customer Details</h4>
+            {% for x in data %}
+            {% if forloop.counter == 1 %}
+            <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                <div style="flex: 1; margin-right: 10px; text-align: center;">
+                    <div style="font-weight: bold; color: #333;">Name</div>
+                    <span >{{ x.uid.username }}</span>
+                </div>
+                <!--
+                <div style="flex: 1; margin-right: 10px; text-align: center;">
+                    <div style="font-weight: bold; color: #333;">Mobile No.</div>
+                    <span style="padding: 5px; border: 1px solid #ccc; border-radius: 5px;">{{ customer.mobile }}</span>
+                </div>-->
+                <div style="flex: 1; text-align: center;">
+                    <div style="font-weight: bold; color: #333;">Email ID</div>
+                    <span >{{ x.uid.email }}</span>
+                </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+    
+        <h2 class="text-center" style="font-weight: bold; color: #333;">Shopping Cart</h2>
+        <!-- Item Row Header -->
+        <div class="item-row" style="display: flex; align-items: center; justify-content: space-between; margin-top: 20px; font-weight: bold;">
+            <div class="item-name" style="flex: 3; text-align: left;">Item Name</div>
+            <div class="item-price" style="flex: 1; text-align: center;">Price</div>
+            <div class="item-quantity" style="flex: 1; text-align: center;">Quantity</div>
+        </div>
+        <hr style="margin: 10px 0;">
+    
+        <!-- Item Row with Image -->
+        
+        {% for x in data %}
+    <div class="item-row" style="display: flex; align-items: center; justify-content: space-between; margin: 10px 0;">
+        <div class="item-name" style="flex: 3; display: flex; align-items: center;">
+            <img src="{{ x.pid.pimage.url }}" alt="Item Image" style="width: 300px; height: auto; margin-right: 10px; border-radius: 5px;">
+            <span style="font-weight: bold; color: #333;">{{ x.pid.name }}</span>
+        </div>
+        <div class="item-price" style="flex: 1; text-align: center; color: #333; display: flex; align-items: center; justify-content: center;">
+            ₹ {{ x.pid.price }}
+        </div>
+        <div class="item-quantity" style="flex: 1; display: flex; align-items: center; justify-content: center;">
+            <input type="number" class="form-control" value="{{ x.qty }}"  style="width: 60px; height: 35px; text-align: center;">
+        </div>
+        
+        
+    </div>
+    {% endfor %}
+
+        <hr style="margin: 10px 0;">
+    
+        <!-- Total and Place Order Button -->
+        <div class="text-center" style="margin-top: 20px;">
+            <h4 style="font-weight: bold; color: #333;">Total: ₹ {{total}}</h4>
+            <a href="/makepayment"><button class="btn btn-success" style="margin-top: 10px; padding: 10px 20px;">Make Payment</button></a>
+        </div>
+    </div>
+    
+    
+</div>
+
+<!-- Modal for Extra Items 
+<div class="modal fade" id="extraItemsModal" tabindex="-1" aria-labelledby="extraItemsModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="extraItemsModalLabel">Add Extra Items</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="extraItemsForm">
+                    <div class="mb-3">
+                        <label for="extraItemName" class="form-label">Extra Item Name:</label>
+                        <input type="text" class="form-control" id="extraItemName" placeholder="Enter item name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="extraItemPrice" class="form-label">Extra Item Price:</label>
+                        <input type="number" class="form-control" id="extraItemPrice" placeholder="Enter item price" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="extraItemQuantity" class="form-label">Quantity:</label>
+                        <input type="number" class="form-control" id="extraItemQuantity" min="1" value="1" required>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="addExtraItem()">Add Item</button>
+            </div>
+        </div>
+    </div>
+</div>--><br>
+{% endblock 'main' %} 

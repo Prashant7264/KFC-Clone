@@ -1,0 +1,241 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>KFC Clone</title>
+  <!-- BS CSS -->
+  <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <!-- Icons API Link -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+    body {
+        background-color: #f7f7f7; /* Very light gray */
+        color: #333333; /* Dark gray for text */
+        font-family: Arial, sans-serif;
+    }
+    .header {
+      background-color: #4b4a4a;
+      padding: 10px 20px;
+    }
+
+    .logo img {
+      height: 80px;
+      width: auto; /* Keep aspect ratio */
+    }
+
+    .search-bar {
+      width: 100%; /* Full width */
+      max-width: 600px; /* Limit width */
+      margin-right: 10px; /* Space between search and buttons */
+    }
+
+    .auth-buttons a.auth-button {
+    background-color: #E8002A;
+    color: white;
+    font-weight: bold;
+    padding: 8px 15px;
+    border-radius: 25px;
+    text-align: center;
+    transition: background-color 0.3s;
+    font-size: 16px;
+    min-width: 120px; /* Sets equal width for buttons */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .auth-buttons a.auth-button:hover {
+    background-color: #d70028;
+  }
+
+    .navbar {
+      background-color: #333;
+      padding: 10px 20px;
+    }
+
+    .navbar a {
+      color: white;
+      font-weight: bold;
+      padding: 8px 15px;
+      transition: background-color 0.3s;
+    }
+
+    .navbar a:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .dropdown-menu {
+      background-color: #f8f8f8;
+    }
+
+    .dropdown-item:hover {
+      background-color: #E8002A;
+      color: white;
+    }
+
+    .location-button {
+      background-color: #E8002A;
+      color: white;
+      font-weight: bold;
+      border-radius: 25px;
+      padding: 8px 20px;
+      font-size: 16px;
+      margin-left: 10px; /* Spacing between button and nav items */
+    }
+    .user-logo {
+            width: auto;
+            padding: 10px 15px;
+            background-color: #f20b0b;
+            border-radius: 25px;
+            display: flex;
+            align-items: center;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            position: relative;
+            transition: background-color 0.3s;
+        }
+
+        .user-logo:hover {
+            background-color: #e61f1f;
+        }
+
+        .options-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            list-style: none;
+            padding: 10px 0;
+            margin: 5px 0;
+            min-width: 150px;
+            z-index: 100;
+        }
+
+        .user-logo:hover .options-menu {
+            display: block;
+        }
+
+        .options-menu li,
+        .options-menu a {
+            display: block;
+            padding: 10px 15px;
+            text-decoration: none;
+            color: #333;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        .options-menu li:hover,
+        .options-menu a:hover {
+            background-color: #f0f0f0;
+        }
+
+        .options-menu a {
+            display: block;
+            color: inherit;
+        }
+  </style>
+</head>
+<body>
+  <!-- Header section -->
+   <div class="container" style="padding: 20px; border-radius: 5px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+  <div class="header">
+    <div class="container">
+      <div class="row align-items-center">
+        <!-- Logo Section -->
+        <div class="col-md-3 logo">
+        <a  href="/main"> <img src="{% static 'images/logo.png' %}" alt="KFC Logo" /></a>
+        </div>
+        <!-- Search and Auth Buttons Section -->
+        <div class="col-md-9">
+          <div class="d-flex align-items-center justify-content-between">
+            <!-- Search Bar -->
+            <form class="search-bar" role="search" action="/search" method="GET">
+              <div class="input-group">
+                <input class="form-control" type="search" name="query" placeholder="Search for items" aria-label="Search"
+                       style="height: 50px; border-radius: 25px 0 0 25px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); font-size: 18px; padding-left: 20px;">
+                <div class="input-group-append">
+                  <button class="btn" type="submit" style="height: 50px; border-radius: 0 25px 25px 0; background-color: #E8002A; color: white; font-size: 18px; font-weight: bold;">
+                    Search
+                  </button>
+                </div>
+              </div>
+            </form>
+            <div class="content">
+              {% block content %}{% endblock %}
+          </div>
+      
+            <!-- Auth Buttons -->
+            <div class="auth-buttons d-flex align-items-center justify-content-end">
+              {% if user.is_authenticated %}
+                <!--<a href="/logout" class="auth-button"><i class="fa fa-sign-out" style="margin-right: 5px;"></i>Log Out</a>-->
+                <div class="user-logo">
+                  <span class="fa fa-user"></span>
+                  <span style="margin-left: 10px; margin-right: 10px;"></span>
+                  <ul class="options-menu">
+                      <a href="/main"><li>Home</li></a>
+                      <a href="/viewcart"><li>ViewCart</li></a>
+                      <a href="/logout"><li>Logout</li></a>
+                  </ul>
+              </div>
+              
+              {% else %}
+                <a href="/login" class="auth-button"><i class="fa fa-user" style="margin-right: 5px;"></i>Log In</a>
+                <a href="/register" class="auth-button"><i class="fa fa-user-plus" style="margin-right: 5px;"></i>Register</a>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+        <!-- Left-aligned nav items -->
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/main"><i class="fa fa-home"></i> Home</a>
+          </li>
+          <!--
+          <li class="nav-item">
+            <a class="nav-link" href="/deal">Deals</a>
+          </li>-->
+          <li class="nav-item">
+            <a class="nav-link" href="/order">Order</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/viewcart"><i class="fa fa-shopping-cart"></i> Cart</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/contact">Contact Us</a>
+          </li>
+        </ul>
+        <!-- Right-aligned location button -->
+        <button type="button" class="location-button" data-toggle="modal" data-target="#map">
+          Our Location
+        </button>
+      </div>
+    </div>
+  </nav>
+</div><br>
+  <!-- BS JS and Custom JS -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="{% static 'js/bootstrap.min.js' %}"></script>
+</body>
+</html>

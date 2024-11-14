@@ -1,0 +1,71 @@
+{% load static %}
+<!--Modal map-->
+<div class="modal fade" id="map" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document" style="max-width: 500px; margin-top: 50px;">
+    <div class="modal-content" style="border-radius: 10px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);">
+      <div class="modal-header" style="justify-content: center; padding: 15px; background-color: #f8f9fa;">
+        <h5 class="modal-title" id="exampleModalLabel" style="font-weight: bold; color: #333;">KFC Location</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="position: absolute; right: 15px; top: 15px;">
+          <span aria-hidden="true" style="font-size: 1.5rem; color: #888;">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" style="padding: 0;">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d124392.20234707724!2d77.51593231640622!3d13.019342400000003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae172487b3616b%3A0x19fdab9bd06c3694!2sKFC!5e0!3m2!1sen!2sin!4v1720104756321!5m2!1sen!2sin"
+          width="100%" height="450" style="border:0; border-radius: 0 0 10px 10px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+      <div class="modal-footer" style="justify-content: center; padding: 15px; background-color: #f8f9fa;">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" style="width: 100px; background-color: #6c757d; border: none; border-radius: 5px;">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+	<!-- Footer -->
+<footer>
+  <div class="container card links-footer" style="padding: 20px; background-color: #f7f7f7; border-radius: 8px;">
+      <div class="row align-items-center">
+          <div class="col-md-8" style="padding-top: 10px;">
+              <span class="footer-links" style="margin-right: 15px; font-weight: 500; color: #333; cursor: pointer;">ABOUT KFC</span>
+              <span class="footer-links" style="margin-right: 15px; font-weight: 500; color: #333; cursor: pointer;">GIFT CARD</span>
+              <span class="footer-links" style="margin-right: 15px; font-weight: 500; color: #333; cursor: pointer;">FEEDBACK</span>
+              <span class="footer-links" style="margin-right: 15px; font-weight: 500; color: #333; cursor: pointer;">CONTACT US</span>
+              <span class="footer-links" style="margin-right: 15px; font-weight: 500; color: #333; cursor: pointer;">BRAND T & C</span>
+              <span class="footer-links" style="margin-right: 15px; font-weight: 500; color: #333; cursor: pointer;">OFFERS T & C</span>
+              <span class="footer-links" style="margin-right: 15px; font-weight: 500; color: #333; cursor: pointer;">SITE MAP</span>
+              <span class="footer-links" style="font-weight: 500; color: #333; cursor: pointer;">FIND A KFC</span>
+          </div>
+          <div class="col-md-4 text-right">
+              <a href="#"><img src="{% static 'images/google.png' %}" height="35" width="90" style="margin: 5px; border-radius: 5px;"></a>
+              <a href="#"><img src="{% static 'images/app.png' %}" height="35" width="90" style="margin: 5px; border-radius: 5px;"></a>
+          </div>
+      </div>
+
+      <hr style="border-top: 1px solid #ddd; margin: 20px 0;">
+
+      <div class="row align-items-center">
+          <div class="col-md-6 d-flex align-items-center">
+              <a href="#"><img src="{% static 'images/facebook.png' %}" height="30" width="max-width" style="margin-right: 20px;"></a>
+              <a href="#"><img src="{% static 'images/instagram.png' %}" height="30" width="30" style="margin-right: 20px;"></a>
+              <a href="#"><img src="{% static 'images/youtube.png' %}" height="30" width="40"></a>
+          </div>
+          <div class="col-md-6 text-right">
+              <small style="color: #666;">© 2024 KFC. All Rights Reserved.</small>
+          </div>
+      </div>
+
+      <div class="text-center" style="padding-top: 15px; font-size: 0.9em; color: #777;">
+          <small>
+              Food shown is for illustration purposes only. Actual products may differ. Prices are inclusive of GST. The KFC name, logos, and related marks are trademarks of KFC, Inc. Products may contain Monosodium Glutamate. Not recommended for infants below 12 months.
+          </small>
+      </div>
+  </div>
+</footer>
+
+<!-- Bootstrap JS and Custom JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+</body>
+</html>

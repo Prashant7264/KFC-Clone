@@ -1,0 +1,111 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="page/css/bootstrap.min.css">
+    <style>
+        body {
+            background-image: url("https://images.unsplash.com/photo-1604304234798-fef891f7b531"); /* Sample KFC-related image */
+            background-size: cover;
+            background-position: center;
+            color: #fff; /* Change text color to white */
+        }
+
+        .container {
+            margin-top: 50px;
+        }
+
+        .card {
+            border: none;
+            background-color: rgba(0, 0, 0, 0.7); /* Slightly transparent background */
+        }
+
+        .card-header {
+            background-color: transparent; /* Make header background transparent */
+            color: white;
+        }
+
+        .btn-danger {
+            width: 100%;
+            background-color: #3b9e2c; /* Change button color to match theme */
+            border: none;
+        }
+
+        .btn-danger:hover {
+            background-color: #1e820a; /* Darker shade on hover */
+        }
+
+        .text-center a {
+            text-decoration: none;
+            color: #3b9e2c; /* Match link color to button */
+        }
+
+        .text-center a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row mb-4">
+            <div class="col-12 text-center">
+                <a href="/main" class="btn btn-link" style="color: #3b9e2c;">Home</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 mx-auto">
+                <div class="card shadow">
+                    <div class="card-header text-center">
+                        <h2>Register</h2>
+                        {% if errmsg %}
+                        <div class="alert alert-danger">
+                            {{errmsg}}
+                        </div>
+                        {% endif %}
+                        {% if successmsg %}
+                        <div class="alert alert-success mt-3">
+                            {{successmsg}}
+                        </div>
+                        {% endif %}
+                    </div>
+                    <div class="card-body">
+                        <form action="/register" method="POST">
+                            {% csrf_token %}
+                            <!-- Username -->
+                            <div class="form-group">
+                                <label for="uname">Username:</label>
+                                <input type="email" name="uname" class="form-control" id="uname" placeholder="Enter username" required>
+                            </div>
+                            <!-- Password -->
+                            <div class="form-group">
+                                <label for="upass">Password:</label>
+                                <input type="password" name="upass" class="form-control" id="upass" placeholder="Enter password" required>
+                            </div>
+                            <!-- Confirm Password -->
+                            <div class="form-group">
+                                <label for="ucpass">Confirm Password:</label>
+                                <input type="password" name="ucpass" class="form-control" id="ucpass" placeholder="Re-enter password" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" class="btn btn-danger" value="Register">
+                            </div>
+                        </form>
+                        <div class="text-center">
+                            <small>Already a user? <a href="/login">Login</a></small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="page/js/bootstrap.min.js"></script>
+</body>
+
+</html>

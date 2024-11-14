@@ -1,0 +1,123 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-image: url("{% static 'images/your-kfc-image.jpg' %}"); /* Sample KFC-related image */
+            background-size: cover;
+            background-position: center;
+            color: #fff; /* Change text color to white */
+        }
+
+        .container {
+            margin-top: 50px;
+        }
+
+        .card {
+            border: none;
+            border-radius: 10px;
+            background-color: rgba(0, 0, 0, 0.7); /* Slightly transparent background */
+        }
+
+        .card-header {
+            background-color: transparent; /* Make header background transparent */
+            color: white;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-control:focus {
+            border-color: #3b9e2c; /* Highlight border color */
+            box-shadow: 0 0 5px rgba(59, 158, 44, 0.5);
+        }
+
+        .btn-login {
+            width: 100%;
+            background-color: #3b9e2c;
+            color: white;
+            border: none;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        .btn-login:hover {
+            background-color: #1e820a;
+        }
+
+        .text-center a {
+            text-decoration: none;
+            color: #3b9e2c; /* Match link color to button */
+        }
+
+        .text-center a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row mb-4">
+            <div class="col-12 text-center">
+                <a href="/main" class="btn btn-link" style="color: #3b9e2c;">Home</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 mx-auto">
+                <div class="card shadow">
+                    <div class="card-header text-center">
+                        <h2 class="text-center">Login</h2>
+                        <h1 class="login-header">Welcome Back</h1>
+                        {% if errmsg %}
+                        <div class="alert alert-danger">
+                            {{errmsg}}
+                        </div>
+                        {% endif %}
+                        {% if successmsg %}
+                        <div class="alert alert-success mt-3">
+                            {{successmsg}}
+                        </div>
+                        {% endif %}
+                    </div>
+                    <div class="card-body">
+                        <form action="/login" method="POST">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="uname" class="form-label">Username:</label>
+                                <input type="email" name="uname" class="form-control" id="uname" placeholder="Enter username" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="upass" class="form-label">Password:</label>
+                                <input type="password" name="upass" class="form-control" id="upass" placeholder="Enter password" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" value="Login" class="btn btn-login">
+                            </div>
+                        </form>
+                        <div class="text-center">
+                            <small>
+                                <a href="forgot-password.html">Forgot Password?</a> | 
+                                Not a user? <a href="/register">Register</a>
+                            </small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

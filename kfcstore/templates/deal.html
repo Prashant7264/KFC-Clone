@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'main' %}
+
+<!-- User-Friendly Filter Section -->
+<div class="container" style="padding: 20px; background-color: #f0f4f8; border-radius: 5px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+  <div style="display: flex; justify-content: center; background-color: #f1f1f1; padding: 15px; border-radius: 8px; margin-bottom: 20px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+    <!-- Price Filter Section -->
+    <form method="GET" action="/range_filter" style="display: flex; align-items: center;">
+        <label for="min_price" style="margin-right: 10px; font-weight: bold;">Min Price:</label>
+        <input type="number" id="min_price" name="min_price" placeholder="0" min="0" style="width: 80px; padding: 6px; border-radius: 5px; border: 1px solid #ddd; margin-right: 20px;">
+  
+        <label for="max_price" style="margin-right: 10px; font-weight: bold;">Max Price:</label>
+        <input type="number" id="max_price" name="max_price" placeholder="1000" min="0" style="width: 80px; padding: 6px; border-radius: 5px; border: 1px solid #ddd; margin-right: 20px;">
+  
+        <button type="submit" style="padding: 6px 20px; border: none; background-color: #28a745; color: white; font-weight: bold; border-radius: 5px; cursor: pointer;">Apply</button>
+    </form>
+  </div>
+  <br>
+<!-- Card section-->
+
+
+<div class="row products">
+  <!-- Card 1 -->
+  {% for x in products %}
+  <div class="col-sm-4">
+    <div class="card mb-3" style="min-height: 350px; display: flex; flex-direction: column; justify-content: space-between;">
+        <div style="height: 200px; overflow: hidden; border-top-left-radius: 5px; border-top-right-radius: 5px;">
+            <img src="{{x.pimage.url}}" class="card-img-top" alt="Product Image" style="width: 100%; height: 100%; object-fit: fill;">
+        </div>
+        <div class="card-body" style="display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+                <img height="19px" width="19px" style="float: left; padding-top: 6px; padding-right: 6px;" src="{% static 'images/non-veg.png' %}" />
+                <b>
+                    <p class="card-text" style="margin-bottom: 5px;">{{x.pdetails}}</p>
+                </b>
+                <p class="card-text" style="margin-bottom: 10px;">{{x.name}}</p>
+            </div>
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+                <p class="card-text" style="font-weight: bold; margin: 0;">Rs {{x.price}}</p>
+                <a href="/order/{{x.id}}" class="btn btn-success btn-sm">Buy</a>
+            </div>
+        </div>
+    </div>
+</div>
+    {% empty %}
+        <p style="text-align: center;">No products found within this price range.</p>
+    {% endfor %}
+  </div>
+  <br>
+{% endblock 'main' %}
